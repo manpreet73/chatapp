@@ -9,7 +9,7 @@ import { Button } from "rsuite";
 import { useHover, useMediaQuery } from "../../../misc/customHooks";
 import IconBtnControl from "./IconBtnControl";
 
-const MessageItem = ({ message, handleAdmin, handleLike }) => {
+const MessageItem = ({ message, handleAdmin, handleLike, handleDelete }) => {
     const { author, createdAt, text, likes, likeCount } = message;
 
     const [selfRef,isHovered]= useHover();
@@ -40,6 +40,10 @@ const MessageItem = ({ message, handleAdmin, handleLike }) => {
                 <TimeAgo datetime={createdAt} className="font-normal text-black-45 ml-2" />
 
                 <IconBtnControl {...(isLiked ? { color: 'red' } : {})} isVisible={canShowIcons} iconName='heart' tooltip='Like this message' onClick={()=>handleLike(message.id)} badgeContent={likeCount} />
+
+                { isAuthor && (
+                    <IconBtnControl isVisible={canShowIcons} iconName='close' tooltip='Delete this message' onClick={()=>handleDelete(message.id)} />
+                )}
 
             </div>
             <div>
