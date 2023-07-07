@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import {useParams} from 'react-router'
-import { auth, database } from '../../../misc/firebase';
+import { auth, database, storage } from '../../../misc/firebase';
 import { transformToArrWithId } from '../../../misc/helper';
 import MessageItem from './MessageItem';
 import { Alert } from 'rsuite';
@@ -75,7 +75,7 @@ const Messages = () => {
     Alert.info(alertMsg,4000)
   },[])
 
-  const handleDelete= useCallback(async(msgId)=>{
+  const handleDelete= useCallback(async(msgId,file)=>{
     if(!window.confirm('Delete this message')){
       return;
     }
@@ -100,7 +100,16 @@ const Messages = () => {
 
       Alert.info('Message has been deleted',4000);
     } catch (error) {
-      Alert.error(error.message,4000)
+      return Alert.error(error.message,4000)
+    }
+
+    if(file){
+      try {
+        const fileRef=storage.refFromURL(file.url);
+        await fileRef.delete();
+      } catch (error) {
+        Alert.error(error.message)
+      }
     }
 
   },[chatId,messages])
