@@ -70,11 +70,11 @@ const ProviderBlock = () => {
                 </Tag>
             )}
 
-            // {isConnected['facebook.com'] && (
-            //     <Tag color='blue' closable onClose={unlinkFacebook}>
-            //         <Icon icon='facebook' /> Connected
-            //     </Tag>
-            // )}
+            {/* {isConnected['facebook.com'] && (
+                <Tag color='blue' closable onClose={unlinkFacebook}>
+                    <Icon icon='facebook' /> Connected
+                </Tag>
+            )} */}
 
             <div className="mt-2">
                 {!isConnected['google.com'] && (
@@ -83,11 +83,11 @@ const ProviderBlock = () => {
                     </Button>
                 )}
 
-                // {!isConnected['facebook.com'] && (
-                //     <Button block color="blue" onClick={linkFacebook}>
-                //         <Icon icon='facebook' /> Link to Facebook
-                //     </Button>
-                // )}
+                 {/* {!isConnected['facebook.com'] && (
+                    <Button block color="blue" onClick={linkFacebook}>
+                        <Icon icon='facebook' /> Link to Facebook
+                    </Button>
+                )} */}
 
             </div>
         </div>
